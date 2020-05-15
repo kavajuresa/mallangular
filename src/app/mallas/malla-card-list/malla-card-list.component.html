@@ -1,0 +1,30 @@
+<mat-card *ngFor="let row of malla" class="course-card mat-elevation-z10">
+
+    <mat-card-header>
+
+        <mat-card-title>{{row.descripcion}}</mat-card-title>
+
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>{{row.carrera}}</p>
+    </mat-card-content>
+
+    <mat-card-actions class="course-actions">
+
+        <button mat-button class="mat-raised-button mat-primary" [routerLink]="['/malla', row.id]">
+            ABRIR
+        </button>
+
+        <button mat-button class="mat-raised-button mat-accent"
+                (click)="editCourse(row)">
+            EDITAR
+        </button>
+
+      <button mat-button class="mat-raised-button mat-accent"
+              (click)="editCourse(row)"><mat-icon>delete_outline</mat-icon>
+      </button>
+
+    </mat-card-actions>
+
+</mat-card>

@@ -1,0 +1,52 @@
+<div *ngIf="action == 'Borrar'; else elseTemplate">
+  <span>¿Estás seguro de eliminar <b>{{row.nombre}}</b>?</span>
+  <div class="button-row">
+    <button mat-raised-button color="primary" (click)="doAction()">{{action}}</button>
+    <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
+  </div>
+</div>
+<ng-template #elseTemplate>
+  <mat-toolbar>
+    <span>{{action}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+  <form [formGroup]="materiaForm.form" class="normal-form">
+    <mat-grid-list cols="1" rowHeight="400px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <mat-form-field>
+            <input formControlName="id" matInput placeholder="ID">
+            <mat-error>Es obligatorio.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="descripcion" matInput placeholder="Descripcion">
+            <mat-error>Es obligatorio.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="curso" matInput placeholder="Curso">
+            <mat-error>Es obligatorio.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="periodo" matInput placeholder="Periodo">
+            <mat-error>Es obligatorio.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="carrera" placeholder="Carrera">
+              <ng-container *ngFor="let row of carreras">
+                <mat-option value="{{row.id}}">{{row.nombre}}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error>Es obligatorio.</mat-error>
+          </mat-form-field>
+
+          <div class="button-row" mat-dialog-actions>
+            <button mat-raised-button color="primary" (click)="doAction()">{{action}}</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Limpiar</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</ng-template>
+

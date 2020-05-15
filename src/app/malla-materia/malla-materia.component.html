@@ -1,0 +1,26 @@
+<button mat-icon-button (click)="openFile()"><mat-icon>open</mat-icon></button>
+<button mat-icon-button (click)="generateFile()"><mat-icon>save</mat-icon></button>
+<button mat-icon-button (click)="generatePdf()"><mat-icon>picture_as_pdf</mat-icon></button>
+<button mat-icon-button (click)="generateImg()"><mat-icon>insert_photo</mat-icon></button>
+<div id="diagram">
+  <gojs-diagram #myDiagram [initDiagram]='initDiagram' [nodeDataArray]='diagramNodeData' [linkDataArray]='diagramLinkData'
+                [divClassName]='diagramDivClassName' [modelData]='diagramModelData' (modelChange)='diagramModelChange($event)'>
+  </gojs-diagram>
+</div>
+<mat-card id="palette" *ngIf="hidePalette" class="draggable" cdkDrag>
+  <mat-card-header>
+    <mat-card-title>Materias</mat-card-title>
+    <mat-card-actions><button mat-icon-button (click)="showPalette()"><mat-icon>cancel</mat-icon></button></mat-card-actions>
+  </mat-card-header>
+  <mat-card-content>
+    <gojs-palette #myPalette [initPalette]='initPalette' [divClassName]='paletteDivClassName' [nodeDataArray]='paletteNodeData'
+                  [linkDataArray]='paletteLinkData' [modelData]='paletteModelData' (modelChange)='paletteModelChange($event)'>
+    </gojs-palette>
+  </mat-card-content>
+</mat-card>
+<mat-card id="overview" *ngIf="hidePalette" class="draggable" cdkDrag>
+  <gojs-overview #myOverview [initOverview]='initOverview' [divClassName]='oDivClassName' [observedDiagram]='observedDiagram'></gojs-overview>
+</mat-card>
+<div id="inspector" class="draggable" cdkDrag>
+  <app-inspector [selectedNode]='selectedNode' (onFormChange)='handleInspectorChange($event)'></app-inspector>
+</div>

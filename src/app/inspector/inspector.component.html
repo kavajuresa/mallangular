@@ -1,0 +1,7 @@
+<form *ngIf='selectedNode' (ngSubmit)='onCommitForm()'>
+  ID: {{ selectedNode.data.key }}<br>
+  Semestre: {{ selectedNode.data.group}}<br>
+  H. practicas: <input type='number' name='HP' [(ngModel)]='data.HP' />
+  H. teoricas: <input type='number' name='HT' [(ngModel)]='data.HT' />
+  <button type="submit">Commit</button>
+</form>

@@ -1,0 +1,63 @@
+<div class="search-div">
+  <button mat-raised-button  (click)="openDialog('Agregar', {})">
+    <mat-icon>add</mat-icon>Agregar
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Buscar" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<div class="container mat-elevation-z8">
+  <div class="loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="table-container">
+    <table mat-table class="full-width-table" matSort aria-label="Materias" [dataSource]="data">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
+        <td mat-cell *matCellDef="let row">{{row.descripcion}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha_creado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+        <td mat-cell *matCellDef="let row">{{row.fecha_creado}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="carrera">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Carrera</th>
+        <td mat-cell *matCellDef="let row">{{row.carrera}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row" class="action-link">
+          <button mat-icon-button (click)="openDialog('Actualizar', row)"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button color="warn" (click)="openDialog('Borrar', row)"><mat-icon>delete_outline</mat-icon></button>
+          <button mat-icon-button class="mat-raised-button mat-primary" (click)="openNewTab('/malla/'+row.carrera + '/' + row.id)">
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div class="no-records" *ngIf="!resultsLength">No hay registros</div>
+  </div>
+
+
+  <mat-paginator #paginator
+                 [showFirstLastButtons]="true" [length]="resultsLength"
+                 [pageIndex]="0" [pageSize]="10"
+                 [pageSizeOptions]="[10, 25, 50, 100, 250]">
+  </mat-paginator>
+</div>

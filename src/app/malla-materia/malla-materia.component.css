@@ -1,0 +1,52 @@
+.myDiagramDiv {
+  background: whitesmoke;
+  width: 100%;
+  height: 500px;
+  border: 1px solid black;
+  z-index: 0;
+}
+.myPaletteDiv {
+  background: transparent;
+  width: 300px;
+  height: 400px;
+}
+
+.myOverviewDiv {
+  width: 200px;
+  height: 150px;
+  background: whitesmoke;
+  border: 1px solid black;
+}
+#diagram {
+  position:static;
+}
+#palette {
+  position:absolute;
+  top: 80px;
+  left: 0;
+  padding: 0;
+}
+.mat-card-header {
+  background: cornflowerblue;
+}
+.mat-card-actions {
+  position: absolute;
+  right:0;
+  top: -17px;
+}
+
+#overview {
+  position: absolute;
+  top: 80px;
+  right: 0;
+}
+#inspector {
+  position:absolute;
+  bottom: 80px;
+  right: 80px;
+}
+.draggable {
+  border: 1px solid cornflowerblue;
+  z-index: 1;
+  cursor: move;
+}

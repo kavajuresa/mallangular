@@ -1,0 +1,41 @@
+<button mat-raised-button  (click)="null">
+  <mat-icon>add</mat-icon>Agregar
+</button>
+<div class="courses-panel">
+
+  <mat-tab-group>
+
+    <mat-tab label="Informatica">
+
+      <app-malla-card-list [malla]="carreraInformatica$ | async">
+
+      </app-malla-card-list>
+
+    </mat-tab>
+
+    <mat-tab label="Civil">
+
+      <app-malla-card-list [malla]="carreraCivil$ | async">
+
+      </app-malla-card-list>
+
+    </mat-tab>
+
+    <mat-tab label="Electronica">
+
+      <app-malla-card-list [malla]="carreraElectronica$ | async">
+
+      </app-malla-card-list>
+
+    </mat-tab>
+
+    <mat-tab label="Electricidad">
+
+      <app-malla-card-list [malla]="carreraElectricidad$ | async">
+
+      </app-malla-card-list>
+
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
